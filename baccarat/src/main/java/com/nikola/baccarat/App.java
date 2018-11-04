@@ -20,7 +20,7 @@ public class App {
 		
 		for (Deck deck : shoe.getDealingShoe()) {
 			for(Card c : deck.getCards()) {
-//				System.out.println(c.getColor() + " " + c.getValue());
+				System.out.println(c.getColor() + " " + c.getValue());
 			}
 		}
 	}
