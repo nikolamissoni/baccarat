@@ -15,7 +15,7 @@ public class DeckTest {
 		
 		Deck shuffledDeck = new Deck();
 //		shuffledDeck = shuffledDeck.Shuffle(shuffledDeck);
-		shuffledDeck = shuffledDeck.Shuffle();
+		shuffledDeck = shuffledDeck.shuffle();
 		
 		//Assert that there is a proper number of cards
 		assertEquals(NUM_CARDS_DECK, deck.getCards().size());

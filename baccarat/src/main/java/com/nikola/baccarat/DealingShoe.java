@@ -1,6 +1,7 @@
 package com.nikola.baccarat;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 /***
  * @author Nikola Missoni
@@ -23,36 +24,41 @@ public class DealingShoe {
 		this.dealingShoe = dealingShoe;
 	}
 
-	public void AddDeck(Deck deck) {
+	public void addDeck(Deck deck) {
 		this.dealingShoe.add(deck);
 	}
 
-	public Card DrawCard() {
+	public Optional<Card> drawCard() {
 		if (getNumberRemainingDecks() > 0) {
-		// Get first card from the deck
-		Card card = this.getDealingShoe().get(0).getCards().get(0);
-		this.getDealingShoe().get(0).getCards().remove(0);
+			// Get first card from the deck
+			Optional<Card> card = this.getDealingShoe().get(0).getCards().get(0);
+			this.getDealingShoe().get(0).getCards().remove(0);
 
-		// If current deck is spent, remove it
+			// If current deck is spent, remove it
 			if (this.getDealingShoe().get(0).getCards().size() == 0) {
 				this.getDealingShoe().remove(0);
 			}
 			return card;
 		}
-		//TODO: This is not the best way to handle this
-		return null;
+		return Optional.empty();
 	}
 
 	public int getNumberRemainingDecks() {
 		return this.getDealingShoe().size();
 	}
 	
-	public void burnCards() {
-		var burnCard = this.getDealingShoe().get(0).getCards().get(0);
-		var numberOfBurnCards = burnCard.getValue() == 0 ? 10 : burnCard.getValue();
+	public Optional<Card> getBurnCard() {
+		return drawCard();
+	}
+
+	public void burnCards(Card burnCard) {
 		
-		for(int i = 0; i < numberOfBurnCards; i++) {
-			//TODO: remove this many cards from the shoe
+		var burnCardValue = burnCard.getValue();
+
+		int numberOfBurnCards = burnCardValue == 0 ? 10 : burnCardValue;
+
+		for (int i = 0; i < numberOfBurnCards; i++) {
+			drawCard();
 		}
 	}
 }
