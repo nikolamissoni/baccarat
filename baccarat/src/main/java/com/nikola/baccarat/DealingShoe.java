@@ -57,6 +57,8 @@ public class DealingShoe {
 
 		int numberOfBurnCards = burnCardValue == 0 ? 10 : burnCardValue;
 
+		System.out.println(String.format("Burning %d cards %s", numberOfBurnCards, System.lineSeparator()));
+		
 		for (int i = 0; i < numberOfBurnCards; i++) {
 			drawCard();
 		}

@@ -8,7 +8,7 @@ package com.nikola.baccarat;
  */
 public class App {
 
-	private static int NUMBER_OF_DECKS = 6;
+	private static int NUMBER_OF_DECKS = 1;
 
 	public static void main(String[] args) {
 
@@ -30,10 +30,25 @@ public class App {
 		 */
 		if (card.isPresent()) {
 			var c = card.get();
-			System.out.println("Value = " + c.getValue());
+//			System.out.println("Value = " + c.getValue());
 			shoe.burnCards(c);
 		}
+
+		/**
+		 * 3. Start the game
+		 */
+		Player player = new Player();
+		Banker banker = new Banker();
 		
-		
+		//TODO: What if player draw last card?? Banker has nothing to draw?!
+		while (shoe.getDealingShoe().get(0).hasCards()) {
+			var playerCard = player.takeCard(shoe);
+			System.out.println("Player draw: " + playerCard.get().toString());
+			var bankerCard = banker.takeCard(shoe);
+			System.out.println("Banker draw: " + bankerCard.get().toString());
+			System.out.println("/////////////");
+		}
+
+		System.out.println("Game ended");
 	}
 }
