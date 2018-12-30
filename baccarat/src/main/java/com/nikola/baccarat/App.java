@@ -23,15 +23,13 @@ public class App {
 		/**
 		 * 1. get burn card
 		 */
-		var card = shoe.getBurnCard();
+		var burnCard = shoe.getBurnCard();
 
 		/**
 		 * 2. burn cards
 		 */
-		if (card.isPresent()) {
-			var c = card.get();
-//			System.out.println("Value = " + c.getValue());
-			shoe.burnCards(c);
+		if (burnCard.isPresent()) {
+			shoe.burnCards(burnCard.get());
 		}
 
 		/**

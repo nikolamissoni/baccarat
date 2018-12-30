@@ -56,6 +56,13 @@ public class DealingShoe {
 		var burnCardValue = burnCard.getValue();
 
 		int numberOfBurnCards = burnCardValue == 0 ? 10 : burnCardValue;
+		
+		System.out.println(String.format("Value of burn card is %d", numberOfBurnCards));
+		
+		//TODO: This is hack, avoid IndexOutOfBounds by burning even number of cards
+		if(numberOfBurnCards % 2 != 0) {
+			numberOfBurnCards++;
+		}
 
 		System.out.println(String.format("Burning %d cards %s", numberOfBurnCards, System.lineSeparator()));
 		
