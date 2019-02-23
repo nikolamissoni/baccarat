@@ -51,6 +51,6 @@ public class Deck {
 	}
 
 	public boolean hasCards() {
-		return this.getCards().size() >= 2;
+		return this.getCards().size() >= 1;
 	}
 }

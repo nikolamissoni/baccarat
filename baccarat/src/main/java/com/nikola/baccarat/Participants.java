@@ -2,7 +2,7 @@ package com.nikola.baccarat;
 
 abstract public class Participants {
 
-	int currentScore;
+	private int currentScore;
 
 	public int getCurrentScore() {
 		return currentScore;
