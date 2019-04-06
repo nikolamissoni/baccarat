@@ -1,6 +1,7 @@
 package com.nikola.baccarat;
 
-import java.util.ArrayList;
+import java.util.Deque;
+import java.util.LinkedList;
 import java.util.Optional;
 
 /***
@@ -14,29 +15,28 @@ import java.util.Optional;
  */
 public class DealingShoe {
 
-	private ArrayList<Deck> dealingShoe = new ArrayList<>();
+	private Deque<Deck> dealingShoe = new LinkedList<Deck>();
 
-	public ArrayList<Deck> getDealingShoe() {
+	public Deque<Deck> getDealingShoe() {
 		return dealingShoe;
 	}
 
-	public void setDealingShoe(ArrayList<Deck> dealingShoe) {
+	public void setDealingShoe(Deque<Deck> dealingShoe) {
 		this.dealingShoe = dealingShoe;
 	}
 
 	public void addDeck(Deck deck) {
-		this.dealingShoe.add(deck);
+		this.dealingShoe.push(deck);
 	}
 
 	public Optional<Card> drawCard() {
 		if (getNumberRemainingDecks() > 0) {
 			// Get first card from the deck
-			Optional<Card> card = this.getDealingShoe().get(0).getCards().get(0);
-			this.getDealingShoe().get(0).getCards().remove(0);
+			Optional<Card> card = this.getDealingShoe().peek().getCards().pop();
 
 			// If current deck is spent, remove it
-			if (this.getDealingShoe().get(0).getCards().size() == 0) {
-				this.getDealingShoe().remove(0);
+			if (this.getDealingShoe().peek().getCards().size() == 0) {
+				this.getDealingShoe().remove();
 			}
 			return card;
 		}
@@ -67,7 +67,9 @@ public class DealingShoe {
 		System.out.println(String.format("Burning %d cards %s", numberOfBurnCards, System.lineSeparator()));
 		
 		for (int i = 0; i < numberOfBurnCards; i++) {
-			drawCard();
+			//TODO: Think about if only pop is needed here
+//			drawCard();
+			this.getDealingShoe().peek().getCards().pop();
 		}
 	}
 }

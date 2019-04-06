@@ -1,8 +1,10 @@
 package com.nikola.baccarat;
 
-import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Deque;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Optional;
-import java.util.Random;
 
 /***
  * @author Nikola Missoni
@@ -14,43 +16,33 @@ import java.util.Random;
  */
 public class Deck {
 
-	private static final int NUM_CARDS_DECK = 52;
 	private static final int CARDS_PER_COLOR = 13;
-	private ArrayList<Optional<Card>> cards;
+	private Deque<Optional<Card>> cards;
 
 	public Deck() {
-		cards = new ArrayList<>();
+		cards = new LinkedList<Optional<Card>>();
 		for (CardColor color : CardColor.values()) {
 			for (int i = 1; i <= CARDS_PER_COLOR; i++) {
 				Optional<Card> c = Optional.of(new Card(color, i));
-				cards.add(c);
+				cards.push(c);
 			}
 		}
 	}
 
-//	public Deck Shuffle(Deck deck) {
 	public Deck shuffle() {
-		Random rn = new Random();
-		for (int i = 0; i < NUM_CARDS_DECK; i++) {
-			// Get random card
-			// TODO: check if last card is used in random; max = 51
-			int current = rn.nextInt(51 - 1 + 1) + 1;
-			Optional<Card> temp = cards.get(current);
-			cards.set(current, cards.get(i));
-			cards.set(i, temp);
-		}
+		Collections.shuffle((List<?>) cards);
 		return this;
 	}
 
-	public ArrayList<Optional<Card>> getCards() {
+	public Deque<Optional<Card>> getCards() {
 		return cards;
 	}
 
-	public void setCards(ArrayList<Optional<Card>> cards) {
+	public void setCards(Deque<Optional<Card>> cards) {
 		this.cards = cards;
 	}
 
 	public boolean hasCards() {
-		return this.getCards().size() >= 1;
+		return this.cards.size() >= 1;
 	}
 }

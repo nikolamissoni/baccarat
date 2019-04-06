@@ -41,12 +41,10 @@ public class App {
 		// TODO: What if player draw last card?? Banker has nothing to draw?!
 		int cardsDrawnInHand = 0;
 
-		int x = 0;
-
-		while (shoe.getDealingShoe().get(0).hasCards()) {
+		while (shoe.getDealingShoe().peek().hasCards()) {
 
 			// TODO: Hack to avoid getting last card
-			if (shoe.getNumberRemainingDecks() == 1 && shoe.getDealingShoe().get(0).getCards().size() == 1)
+			if (shoe.getNumberRemainingDecks() == 1 && shoe.getDealingShoe().peek().getCards().size() == 1)
 				break;
 
 			var playerCard = player.takeCard(shoe);

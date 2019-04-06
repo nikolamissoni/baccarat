@@ -2,8 +2,6 @@ package com.nikola.baccarat;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Optional;
 
@@ -25,7 +23,7 @@ public class DealingShoeTest {
 		shoe.addDeck(deck1);
 		
 		assertEquals(1, shoe.getDealingShoe().size());
-		assertEquals(CARDS_IN_DECK, shoe.getDealingShoe().get(0).getCards().size());
+		assertEquals(CARDS_IN_DECK, shoe.getDealingShoe().peek().getCards().size());
 	}
 	
 	/***
