@@ -42,4 +42,8 @@ public class Banker extends Participants {
 	public int getWinninghands() {
 		return this.winningHands;
 	}
+
+	public List<Card> getCurrentHand() {
+		return currentHand;
+	}
 }
