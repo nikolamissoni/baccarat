@@ -18,8 +18,9 @@ public class Player extends Participants {
 	}
 
 	public void addCardToCurrentHand(Optional<Card> card) {
-		if (this.currentHand.size() == MAX_NUMBER_OF_CARDS_IN_HAND)
+		if (this.currentHand.size() == MAX_NUMBER_OF_CARDS_IN_HAND) {
 			this.currentHand.clear();
+		}
 		this.currentHand.add(card.get());
 	}
 
@@ -30,8 +31,9 @@ public class Player extends Participants {
 			tmpCurrentScore += card.getValue();
 		}
 
-		this.setCurrentScore(tmpCurrentScore % 10);
 		// Get rightmost digit
+		this.setCurrentScore(tmpCurrentScore % 10);
+
 		return this.getCurrentScore();
 	}
 
