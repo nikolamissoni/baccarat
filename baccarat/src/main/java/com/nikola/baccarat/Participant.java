@@ -4,8 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class Banker extends Participants {
+public class Participant {
 
+	private int currentScore;
+
+	//****************************************
 	private static final int MAX_NUMBER_OF_CARDS_IN_HAND = 2;
 	// TODO: add amount of won money
 
@@ -18,8 +21,9 @@ public class Banker extends Participants {
 	}
 
 	public void addCardToCurrentHand(Optional<Card> card) {
-		if (this.currentHand.size() == MAX_NUMBER_OF_CARDS_IN_HAND)
+		if (this.currentHand.size() == MAX_NUMBER_OF_CARDS_IN_HAND) {
 			this.currentHand.clear();
+		}
 		this.currentHand.add(card.get());
 	}
 
@@ -30,6 +34,7 @@ public class Banker extends Participants {
 			tmpCurrentScore += card.getValue();
 		}
 
+		// Get rightmost digit
 		this.setCurrentScore(tmpCurrentScore % 10);
 		// Get rightmost digit
 		return this.getCurrentScore();
@@ -45,5 +50,14 @@ public class Banker extends Participants {
 
 	public List<Card> getCurrentHand() {
 		return currentHand;
+	}
+	//****************************************
+	
+	public int getCurrentScore() {
+		return currentScore;
+	}
+
+	public void setCurrentScore(int currentScore) {
+		this.currentScore = currentScore;
 	}
 }

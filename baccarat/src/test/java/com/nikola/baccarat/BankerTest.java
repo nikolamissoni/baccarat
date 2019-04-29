@@ -7,7 +7,6 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.NoSuchElementException;
 
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -15,7 +14,7 @@ import org.junit.jupiter.api.Test;
 class BankerTest {
 
 	private DealingShoe dealingShoe;
-	private Banker banker;
+	private Participant banker;
 	
 	@BeforeEach
 	private final void getDealingShoe() {
@@ -23,7 +22,7 @@ class BankerTest {
 		dealingShoe = new DealingShoe();
 		dealingShoe.addDeck(deck);
 		
-		banker = new Banker();
+		banker = new Participant();
 	}
 	@Test
 	final void testTakeCard() {
@@ -46,16 +45,19 @@ class BankerTest {
 		
 	}
 
+	@Disabled
 	@Test
 	final void testCalculateCurrentScore() {
 		fail("Not yet implemented"); // TODO
 	}
 
+	@Disabled
 	@Test
 	final void testAddWinningHand() {
 		fail("Not yet implemented"); // TODO
 	}
 
+	@Disabled
 	@Test
 	final void testGetWinninghands() {
 		fail("Not yet implemented"); // TODO

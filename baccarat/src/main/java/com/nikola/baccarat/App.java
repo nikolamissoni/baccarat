@@ -35,8 +35,10 @@ public class App {
 		/**
 		 * 3. Start the game
 		 */
-		Player player = new Player();
-		Banker banker = new Banker();
+//		Player player = new Player();
+//		Banker banker = new Banker();
+		Participant player = new Participant();
+		Participant banker = new Participant();
 
 		// TODO: What if player draw last card?? Banker has nothing to draw?!
 		int cardsDrawnInHand = 0;
