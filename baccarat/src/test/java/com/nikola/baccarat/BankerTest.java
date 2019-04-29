@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
@@ -44,17 +45,46 @@ class BankerTest {
 		assertEquals(1, banker.getCurrentHand().size());
 		
 	}
-
-	@Disabled
+	
 	@Test
-	final void testCalculateCurrentScore() {
-		fail("Not yet implemented"); // TODO
+	final void testAddEmptyOptionalToCurrentHand() {
+		Optional<Card> nullCard = Optional.empty();
+		banker.addCardToCurrentHand(nullCard);
+		
+		assertEquals(0, banker.getCurrentHand().size());
 	}
 
-	@Disabled
+	@Test
+	final void testCalculateCurrentScoreSingleDigitValue() {
+		Optional<Card> card = Optional.of(new Card(CardColor.clubs, 2));
+		
+		banker.addCardToCurrentHand(card);
+		assertEquals(1, banker.getCurrentHand().size());
+		
+		card = Optional.empty();
+		card = Optional.of(new Card(CardColor.diamonds, 2));
+		banker.addCardToCurrentHand(card);
+		assertEquals(2, banker.getCurrentHand().size());
+		
+		assertEquals(4, banker.calculateCurrentScore());
+	}
+	
+	@Test
+	final void testCalculateCurrentScoreDoubleDigitValue() {
+		Optional<Card> card = Optional.of(new Card(CardColor.clubs, 6));
+		banker.addCardToCurrentHand(card);
+		
+		card = Optional.empty();
+		card = Optional.of(new Card(CardColor.hearts, 7));
+		banker.addCardToCurrentHand(card);
+		
+		assertEquals(3, banker.calculateCurrentScore());
+	}
+
 	@Test
 	final void testAddWinningHand() {
-		fail("Not yet implemented"); // TODO
+		banker.addWinningHand();
+		assertEquals(1, banker.getWinninghands());
 	}
 
 	@Disabled

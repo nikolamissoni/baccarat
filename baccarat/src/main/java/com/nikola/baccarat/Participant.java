@@ -21,6 +21,7 @@ public class Participant {
 	}
 
 	public void addCardToCurrentHand(Optional<Card> card) {
+		if(!card.isPresent()) return;
 		if (this.currentHand.size() == MAX_NUMBER_OF_CARDS_IN_HAND) {
 			this.currentHand.clear();
 		}
